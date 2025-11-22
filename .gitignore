@@ -1,0 +1,14 @@
+# .gitignore
+
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Log files
+*.log
+
+# OS & IDE-specific
+.DS_Store
+.vscode/
