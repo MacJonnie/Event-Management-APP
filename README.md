@@ -19,7 +19,7 @@ A robust and scalable event booking API built with **Node.js**, **Express**, and
 - **Database**: PostgreSQL
 - **Authentication**: JWT
 - **Documentation**: Swagger UI
-- **ORM/Query Builder**: (e.g., Sequelize, Knex.js) *(if used)*
+- **ORM/Query Builder**: PgAdmin
 
 ---
 
@@ -27,10 +27,10 @@ A robust and scalable event booking API built with **Node.js**, **Express**, and
 
 ```bash
 # Clone the repo
-git clone https://github.com/MacJonnie/event-booking-api.git
+git clone https://github.com/MacJonnie/Event-Management-APP.git
 
 # Navigate into the project
-cd event-booking-api
+cd Event-Management-APP
 
 # Install dependencies
 npm install
