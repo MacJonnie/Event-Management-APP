@@ -4,7 +4,15 @@ const { Pool } = pkg;
 import dotenv from "dotenv";
 dotenv.config();
 
-const pool = new Pool({
+const isProduction = process.env.NODE_ENV === "production";
+
+const pool = new Pool(
+     isProduction
+    ? {
+        connectionString: process.env.DB_URL,
+        ssl: { rejectUnauthorized: false }
+      }
+    :{
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
