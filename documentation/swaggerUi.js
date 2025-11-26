@@ -33,7 +33,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3001/evently',
+        url: 'https://event-management-app-w44s.onrender.com/Api-Doc',
       },
     ],
   },
