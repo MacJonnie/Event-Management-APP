@@ -10,28 +10,28 @@ import cors from 'cors'
 
 const app = express()
 app.use(cors())
+
+// SwaggerUi Documentation
+app.use('/Api-Doc', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  authorizations: {
+    bearerAuth: {
+      type: 'apiKey',
+      name: 'Authorization',
+        in: 'header'
+      }
+    }
+}));
+
 dotenv.config()
 
 pool.query('SELECT NOW()')
-  .then(res => console.log('✅ PostgreSQL connected @', res.rows[0].now))
-  .catch(err => console.error('❌ PostgreSQL connection failed:', err));
+.then(res => console.log('✅ PostgreSQL connected @', res.rows[0].now))
+.catch(err => console.error('❌ PostgreSQL connection failed:', err));
 
-  app.use(express.json());
-  app.use(express.urlencoded ({
+app.use(express.json());
+app.use(express.urlencoded ({
       extended: true
-  }))
-  
-  // SwaggerUi Documentation
-app.use('/Api-Doc', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
-    authorizations: {
-        bearerAuth: {
-          type: 'apiKey',
-          name: 'Authorization',
-          in: 'header'
-        }
-      }
-}));
-
+}))
 
 app.use("/evently/users", userRoutes)
 app.use("/evently/events", eventRouter)
@@ -46,7 +46,6 @@ app.get("/evently", (req, res) => {
     res.status(200).send("Welcome to Evently. Create and manage your events seamlessly")
     console.log("Welcome to my resource")
 })
-
 
 
 const PORT = process.env.PORT || 2222
