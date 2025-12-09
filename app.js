@@ -6,10 +6,12 @@ import eventRouter from "./routes/event.js";
 import bookingRouter from "./routes/booking.js";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from './documentation/swaggerUi.js';
+import cors from 'cors'
 
 const app = express()
+app.use(cors())
 dotenv.config()
-
+ 
 pool.query('SELECT NOW()')
   .then(res => console.log('✅ PostgreSQL connected @', res.rows[0].now))
   .catch(err => console.error('❌ PostgreSQL connection failed:', err));
