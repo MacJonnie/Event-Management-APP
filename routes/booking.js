@@ -39,7 +39,7 @@ const bookingRouter = express.Router()
  *         description: Server error during booking
  */
 // book event
-bookingRouter.post('/bookEvent', verifyToken, bookEvent, function (req, res) {
+bookingRouter.post('/bookings/bookEvent', verifyToken, bookEvent, function (req, res) {
 
 });
 
@@ -73,7 +73,7 @@ bookingRouter.post('/bookEvent', verifyToken, bookEvent, function (req, res) {
  *         description: Server error
  */
 // cancel booking
-bookingRouter.put('/cancelBooking', verifyToken, cancelBooking, function (req, res) {
+bookingRouter.put('/bookings/cancelBooking', verifyToken, cancelBooking, function (req, res) {
 
 });
 

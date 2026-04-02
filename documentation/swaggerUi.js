@@ -33,10 +33,12 @@ const options = {
     },
   servers: [
     {
-      url: 'https://event-management-app-w44s.onrender.com/',
+      url: 'https://event-management-app-w44s.onrender.com/evently',
+      desxcription: 'Production server',
     },
     {
-      url: 'http://localhost:3001/',
+      url: 'http://localhost:3001/evently',
+      description: 'Development server',
     }
   ],
 

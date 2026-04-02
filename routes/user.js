@@ -39,7 +39,7 @@ const userRouter = express.Router();
  *         description: Bad request (missing fields or validation error)
  */
 // users signUp
-userRouter.post("/signUp", signUp, function (req, res) {
+userRouter.post("/users/signUp", signUp, function (req, res) {
     
 });
 
@@ -73,7 +73,7 @@ userRouter.post("/signUp", signUp, function (req, res) {
  *         description: Invalid credentials
  */
 // users signIn
-userRouter.post("/signIn", signIn, function (req, res) {
+userRouter.post("/users/signIn", signIn, function (req, res) {
 
 });
 
@@ -105,7 +105,7 @@ userRouter.post("/signIn", signIn, function (req, res) {
  *         description: Unauthorized or forbidden
  */
 // Change User Role
-userRouter.post("/changeRole", verifyToken, changeRole, function (req, res) {
+userRouter.post("/users/changeRole", verifyToken, changeRole, function (req, res) {
 
 });
 
