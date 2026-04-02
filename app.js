@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import pool from './db.js';
-import userRoutes from './routes/user.js';
+import userRouter from './routes/user.js';
 import eventRouter from "./routes/event.js";
 import bookingRouter from "./routes/booking.js";
 import swaggerUi from "swagger-ui-express";
@@ -33,7 +33,7 @@ app.use(express.urlencoded ({
       extended: true
 }))
 
-app.use("/evently/users", userRoutes)
+app.use("/evently/users", userRouter)
 app.use("/evently/events", eventRouter)
 app.use("/evently/bookings", bookingRouter)
 // app.all('*', (req, res) =>{
