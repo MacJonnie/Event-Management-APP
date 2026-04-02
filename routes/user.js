@@ -8,7 +8,7 @@ const userRouter = express.Router();
 
 /**
  * @swagger
- * /users/signUp:
+ * /signUp:
  *   post:
  *     summary: Register a new user
  *     tags: [Users]
@@ -39,14 +39,14 @@ const userRouter = express.Router();
  *         description: Bad request (missing fields or validation error)
  */
 // users signUp
-userRouter.post("/users/signUp", signUp, function (req, res) {
+userRouter.post("/signUp", signUp, function (req, res) {
     
 });
 
 
 /**
  * @swagger
- * /users/signIn:
+ * /signIn:
  *   post:
  *     summary: Log in a user
  *     tags: [Users]
@@ -73,14 +73,14 @@ userRouter.post("/users/signUp", signUp, function (req, res) {
  *         description: Invalid credentials
  */
 // users signIn
-userRouter.post("/users/signIn", signIn, function (req, res) {
+userRouter.post("/signIn", signIn, function (req, res) {
 
 });
 
 
 /**
  * @swagger
- * /users/changeRole:
+ * /changeRole:
  *   post:
  *     summary: Change a user's role
  *     tags: [Users]
@@ -105,7 +105,7 @@ userRouter.post("/users/signIn", signIn, function (req, res) {
  *         description: Unauthorized or forbidden
  */
 // Change User Role
-userRouter.post("/users/changeRole", verifyToken, changeRole, function (req, res) {
+userRouter.post("/changeRole", verifyToken, changeRole, function (req, res) {
 
 });
 
