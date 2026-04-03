@@ -9,7 +9,11 @@ import swaggerSpec from './documentation/swaggerUi.js';
 import cors from 'cors'
 
 const app = express()
+
 app.use(cors())
+
+dotenv.config()
+
 
 // SwaggerUi Documentation
 app.use('/Api-Doc', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
@@ -17,21 +21,21 @@ app.use('/Api-Doc', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
     bearerAuth: {
       type: 'apiKey',
       name: 'Authorization',
-        in: 'header'
-      }
+      in: 'header'
     }
+  } 
 }));
 
-dotenv.config()
+
+app.use(express.json());
+app.use(express.urlencoded ({
+  extended: true
+}))
 
 pool.query('SELECT NOW()')
 .then(res => console.log('✅ PostgreSQL connected @', res.rows[0].now))
 .catch(err => console.error('❌ PostgreSQL connection failed:', err));
 
-app.use(express.json());
-app.use(express.urlencoded ({
-      extended: true
-}))
 
 app.use("/evently/users", userRouter)
 app.use("/evently/events", eventRouter)
