@@ -6,7 +6,7 @@ const bookingRouter = express.Router()
 
 /**
  * @swagger
- * /bookings/bookEvent:
+ * /bookEvent:
  *   post:
  *     summary: Book seats for an event
  *     tags: [Bookings]
@@ -39,14 +39,14 @@ const bookingRouter = express.Router()
  *         description: Server error during booking
  */
 // book event
-bookingRouter.post('/bookings/bookEvent', verifyToken, bookEvent, function (req, res) {
+bookingRouter.post('/bookEvent', verifyToken, bookEvent, function (req, res) {
 
 });
 
 
 /**
  * @swagger
- * /bookings/cancelBooking:
+ * /cancelBooking:
  *   put:
  *     summary: Cancel an existing booking
  *     tags: [Bookings]
@@ -73,7 +73,7 @@ bookingRouter.post('/bookings/bookEvent', verifyToken, bookEvent, function (req,
  *         description: Server error
  */
 // cancel booking
-bookingRouter.put('/bookings/cancelBooking', verifyToken, cancelBooking, function (req, res) {
+bookingRouter.put('/cancelBooking', verifyToken, cancelBooking, function (req, res) {
 
 });
 

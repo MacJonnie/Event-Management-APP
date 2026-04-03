@@ -8,7 +8,7 @@ const eventRouter = express.Router();
 
 /**
  * @swagger
- * /events/createEvent:
+ * /createEvent:
  *   post:
  *     summary: Create a new event
  *     tags: [Events]
@@ -50,14 +50,14 @@ const eventRouter = express.Router();
  *         description: Invalid input or missing fields
  */
 // create event
-eventRouter.post('/events/createEvent', verifyToken, isCreator, createEvent, function (req, res){
+eventRouter.post('/createEvent', verifyToken, isCreator, createEvent, function (req, res){
 
 });
 
 
 /**
  * @swagger
- * /events/getAllEvents:
+ * /getAllEvents:
  *   get:
  *     summary: Retrieve all available events
  *     tags: [Events]
@@ -66,14 +66,14 @@ eventRouter.post('/events/createEvent', verifyToken, isCreator, createEvent, fun
  *         description: A list of events
  */
 // get all events
-eventRouter.get('/events/getAllEvents', getAllEvents, function (req, res){
+eventRouter.get('/getAllEvents', getAllEvents, function (req, res){
 
 });
 
 
 /**
  * @swagger
- * /events/getEventById/{id}:
+ * /getEventById/{id}:
  *   get:
  *     summary: Get event details by ID
  *     tags: [Events]
@@ -91,14 +91,14 @@ eventRouter.get('/events/getAllEvents', getAllEvents, function (req, res){
  *         description: Event not found
  */
 // getEventById
-eventRouter.get('/events/getEventById/:id', getEventById, function (req, res){
+eventRouter.get('/getEventById/:id', getEventById, function (req, res){
 
 });
 
 
 /**
  * @swagger
- * /events/updateEvent/{id}:
+ * /updateEvent/{id}:
  *   put:
  *     summary: Update an event by ID (creator only)
  *     tags: [Events]
@@ -134,14 +134,14 @@ eventRouter.get('/events/getEventById/:id', getEventById, function (req, res){
  *         description: Event not found
  */
 // update event
-eventRouter.put('/events/updateEvent/:id', verifyToken, isCreator, updateEvent, function (req, res){
+eventRouter.put('/updateEvent/:id', verifyToken, isCreator, updateEvent, function (req, res){
 
 });
 
 
 /**
  * @swagger
- * /events/deleteEvent:
+ * /deleteEvent:
  *   delete:
  *     summary: Delete an event (creator only)
  *     tags: [Events]
@@ -168,7 +168,7 @@ eventRouter.put('/events/updateEvent/:id', verifyToken, isCreator, updateEvent, 
  *         description: Event not found
  */
 // delete event
-eventRouter.delete('/events/deleteEvent', verifyToken, isCreator, deleteEvent, function (req, res){
+eventRouter.delete('/deleteEvent', verifyToken, isCreator, deleteEvent, function (req, res){
 
 });
 
