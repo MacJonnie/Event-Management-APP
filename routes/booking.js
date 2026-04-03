@@ -6,7 +6,7 @@ const bookingRouter = express.Router()
 
 /**
  * @swagger
- * /bookEvent:
+ * /bookings/bookEvent:
  *   post:
  *     summary: Book seats for an event
  *     tags: [Bookings]
@@ -46,7 +46,7 @@ bookingRouter.post('/bookEvent', verifyToken, bookEvent, function (req, res) {
 
 /**
  * @swagger
- * /cancelBooking:
+ * /bookings/cancelBooking:
  *   put:
  *     summary: Cancel an existing booking
  *     tags: [Bookings]

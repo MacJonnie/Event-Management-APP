@@ -8,7 +8,7 @@ const eventRouter = express.Router();
 
 /**
  * @swagger
- * /createEvent:
+ * /events/createEvent:
  *   post:
  *     summary: Create a new event
  *     tags: [Events]
@@ -57,7 +57,7 @@ eventRouter.post('/createEvent', verifyToken, isCreator, createEvent, function (
 
 /**
  * @swagger
- * /getAllEvents:
+ * /events/getAllEvents:
  *   get:
  *     summary: Retrieve all available events
  *     tags: [Events]
@@ -73,7 +73,7 @@ eventRouter.get('/getAllEvents', getAllEvents, function (req, res){
 
 /**
  * @swagger
- * /getEventById/{id}:
+ * /events/getEventById/{id}:
  *   get:
  *     summary: Get event details by ID
  *     tags: [Events]
@@ -98,7 +98,7 @@ eventRouter.get('/getEventById/:id', getEventById, function (req, res){
 
 /**
  * @swagger
- * /updateEvent/{id}:
+ * /events/updateEvent/{id}:
  *   put:
  *     summary: Update an event by ID (creator only)
  *     tags: [Events]
@@ -141,7 +141,7 @@ eventRouter.put('/updateEvent/:id', verifyToken, isCreator, updateEvent, functio
 
 /**
  * @swagger
- * /deleteEvent:
+ * /events/deleteEvent:
  *   delete:
  *     summary: Delete an event (creator only)
  *     tags: [Events]

@@ -8,7 +8,7 @@ const userRouter = express.Router();
 
 /**
  * @swagger
- * /signUp:
+ * /users/signUp:
  *   post:
  *     summary: Register a new user
  *     tags: [Users]
@@ -46,7 +46,7 @@ userRouter.post("/signUp", signUp, function (req, res) {
 
 /**
  * @swagger
- * /signIn:
+ * /users/signIn:
  *   post:
  *     summary: Log in a user
  *     tags: [Users]
@@ -80,7 +80,7 @@ userRouter.post("/signIn", signIn, function (req, res) {
 
 /**
  * @swagger
- * /changeRole:
+ * /users/changeRole:
  *   post:
  *     summary: Change a user's role
  *     tags: [Users]
