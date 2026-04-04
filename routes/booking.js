@@ -1,5 +1,5 @@
 import express from "express";
-import { bookEvent, cancelBooking } from "../contorllers/booking.js";
+import { bookEvent, cancelBooking } from "../controllers/booking.js";
 import verifyToken from "../middleware/jwt_auth.js";
 
 const bookingRouter = express.Router()

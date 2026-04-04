@@ -1,6 +1,6 @@
 
 import express from "express";
-import { signUp, signIn, changeRole } from "../contorllers/user.js";
+import { signUp, signIn, changeRole } from "../controllers/user.js";
 import verifyToken from "../middleware/jwt_auth.js";
 
 const userRouter = express.Router();

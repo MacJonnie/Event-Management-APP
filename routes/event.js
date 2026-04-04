@@ -1,6 +1,6 @@
 // routes/eventRoutes.js
 import express from 'express';
-import { createEvent, getAllEvents, getEventById, updateEvent, deleteEvent } from "../contorllers/event.js";
+import { createEvent, getAllEvents, getEventById, updateEvent, deleteEvent } from "../controllers/event.js";
 import verifyToken from '../middleware/jwt_auth.js';
 import isCreator from '../middleware/userRole.js';
 
