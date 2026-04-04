@@ -64,8 +64,9 @@ const signIn = async (req, res) => {
       console.log("Welcome back", user.username);
     }catch(error)  {
       console.error(err);
-      res.status(500).send({ message: 'Something went wrong', error:  error});
-
+      res.status(500).send({ 
+        message: 'Something went wrong',
+        error:  error instanceof Error ? error.message : error});
     }};
 
 
