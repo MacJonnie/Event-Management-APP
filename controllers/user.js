@@ -32,7 +32,7 @@ const signUp = async (req, res) => {
     });
   } catch (error) {
       console.log("SignUp request failed:", error);
-      res.status(500).json({ message: "Something went wrong" });
+      res.status(500).json({ message: "Something went wrong", error: error.message || error });
   }};
 
   
