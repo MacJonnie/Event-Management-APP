@@ -8,7 +8,7 @@ import pool from '../db.js'
 const signUp = async (req, res) => {
   try {
       // collect the payload from the request body
-    const { email, username, password } = req.body
+    const { email, name, password } = req.body
 
     // check if the email already exist in the DB.
     const userExists = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
@@ -21,8 +21,8 @@ const signUp = async (req, res) => {
     const hashedPassword = bcrypt.hashSync(password, 8);
 
     const newUser = await pool.query(
-      'INSERT INTO users (email, username, password, role) VALUES ($1, $2, $3, $4) RETURNING *',
-      [email, username, hashedPassword, "USER"]
+      'INSERT INTO users (email, name, password, role) VALUES ($1, $2, $3, $4) RETURNING *',
+      [email, name, hashedPassword, "USER"]
     );
     
     console.log("User Successfully Created");
@@ -32,7 +32,7 @@ const signUp = async (req, res) => {
     });
   } catch (error) {
       console.log("SignUp request failed:", error);
-      res.status(500).json({ message: "Something went wrong", error: error.message || error });
+      res.status(500).json({ message: error.message || error });
   }};
 
   
@@ -61,7 +61,7 @@ const signIn = async (req, res) => {
       });
       
       console.log("You are now logged in");
-      console.log("Welcome back", user.username);
+      console.log("Welcome back", user.name);
     }catch(error)  {
       console.error(err);
       res.status(500).send({ 
