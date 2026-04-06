@@ -1,4 +1,4 @@
-import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerJsdoc from "swagger-jsdoc";
 
 const options = {
   definition: {
@@ -22,27 +22,30 @@ const options = {
         description: "Endpoints for booking and canceling event reservations",
       },
     ],
-  },
-  apis: ['./routes/*.js'],
-  servers: [
-    {
-      url: 'https://event-management-app-w44s.onrender.com/evently',
-      description: 'Production server',
-    },
-    {
-      url: 'http://localhost:3001/evently',
-      description: 'Development server',
-    }
-  ],
-  components: {
-    securitySchemes: {
-      bearerAuth: {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
+
+    servers: [
+      {
+        url: 'https://event-management-app-w44s.onrender.com/evently',
+        description: 'Production server',
+      },
+      {
+        url: 'http://localhost:3001/evently',
+        description: 'Development server',
       }
-    },
-  }
+    ],
+
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        }
+      },
+    }
+  },
+
+  apis: ['./routes/*.js'],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
