@@ -173,3 +173,5 @@ eventRouter.delete('/deleteEvent', verifyToken, isCreator, deleteEvent, function
 });
 
 export default eventRouter;
+
+

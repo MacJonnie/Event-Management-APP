@@ -21,31 +21,31 @@ const options = {
         name: "Bookings",
         description: "Endpoints for booking and canceling event reservations",
       },
-  ],
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
-        }
-      },
-    },
+    ],
+  },
+  apis: ['./routes/*.js'],
   servers: [
     {
       url: 'https://event-management-app-w44s.onrender.com/evently',
-      desxcription: 'Production server',
+      description: 'Production server',
     },
     {
       url: 'http://localhost:3001/evently',
       description: 'Development server',
     }
   ],
-
-  },
-  apis: ['./routes/*.js'],
+  components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      }
+    },
+  }
 };
 
 const swaggerSpec = swaggerJsdoc(options);
 
 export default swaggerSpec;
+

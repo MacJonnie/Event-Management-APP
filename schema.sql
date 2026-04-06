@@ -31,3 +31,6 @@ CREATE TABLE IF NOT EXISTS bookings (
   payment_status TEXT DEFAULT 'PENDING' CHECK (payment_status IN ('PENDING', 'PAID')),
   booking_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
+
+
+

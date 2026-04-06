@@ -1,4 +1,4 @@
-import pool from '../db.js';
+import pool from '../database/db.js';
 
 // CREATE EVENT
 const createEvent = async (req, res) => {
@@ -29,7 +29,7 @@ const createEvent = async (req, res) => {
     });
   } catch (error) {
     console.error('Create event error:', error);
-    res.status(500).json({ message: 'Could not create event' });
+    res.status(500).json({ message: 'Could not create event', error: error.message });
   }
 };
 
@@ -45,7 +45,7 @@ const getAllEvents = async (req, res) => {
     res.status(200).json(result.rows);
   } catch (error) {
     console.error('Fetch events failed:', error);
-    res.status(500).json({ message: 'Could not fetch events' });
+    res.status(500).json({ message: 'Could not fetch events', error: error.message });
   }
 };
 

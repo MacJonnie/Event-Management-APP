@@ -1,4 +1,4 @@
-import pool from '../db.js'
+import pool from '../database/db.js'
 
 // Function to check user role (User cannot create an event).
 const isCreator = async function (req, res, next) {
@@ -20,7 +20,7 @@ const isCreator = async function (req, res, next) {
         next();
     } catch (error) {
         console.error('An error occured.', error)
-        res.status(500).send("Error accessing secured route.")
+        res.status(500).json({message: "Error accessing secured route.",error: error.message})
     };
 }
 

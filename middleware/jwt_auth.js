@@ -14,7 +14,7 @@ const verifyToken = async (req, res, next) => {
     console.log("Authenticated USER ID:", req.user.id);
     next();
   } catch (error) {
-    return res.status(401).json({ error: 'Error validating token' });
+    return res.status(401).json({ error: error.message, message: 'Error validating token' });
   }
 };
 

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import pool from '../db.js'
+import pool from '../database/db.js'
 
 
 
@@ -100,7 +100,7 @@ const changeRole = async (req, res) => {
     console.log("User role updated to CREATOR")
   } catch (error) {
     console.error('Role update failed:', error);
-    res.status(500).json({ message: 'Something went wrong' });
+    res.status(500).json({ message: 'Something went wrong', error: error.message });
   }
 };
 

@@ -1,4 +1,4 @@
-import pool from '../db.js';
+import pool from '../database/db.js';
 
 // BOOK EVENT
 const bookEvent = async (req, res) => {
@@ -34,7 +34,7 @@ const bookEvent = async (req, res) => {
   } catch (error) {
     await pool.query('ROLLBACK');
     console.error('Booking error:', error);
-    res.status(500).json({ message: 'Booking failed' });
+    res.status(500).json({ message: 'Booking failed', error: error.message });
   }
 };
 
@@ -68,7 +68,7 @@ const cancelBooking = async (req, res) => {
   } catch (error) {
     await pool.query('ROLLBACK');
     console.error('Cancellation failed:', error);
-    res.status(500).json({ message: 'Cancellation failed' });
+    res.status(500).json({ message: 'Cancellation failed', error: error.message });
   }
 };
 
