@@ -26,13 +26,13 @@ const signUp = async (req, res) => {
     );
     
     console.log("User Successfully Created");
-    res.status(201).json({
+    return res.status(201).json({
       message: "User Created Successfully",
       user: newUser.rows[0]
     });
   } catch (error) {
       console.log("SignUp request failed:", error);
-      res.status(500).json({ message: error.message || error });
+      return res.status(500).json({ message: error.message || error });
   }};
 
   
@@ -53,18 +53,18 @@ const signIn = async (req, res) => {
       }
       
       const token = jwt.sign({ id: user.id, role: user.role }, process.env.API_SECRET, { expiresIn: "1h" });
+      console.log("You are now logged in");
+      console.log("Welcome back", user.name);
       
-      res.status(200).send({
+      return res.status(200).send({
         user: { userId: user.id, email: user.email, role: user.role },
         message: "Logged in successfully",
         accessToken: token,
       });
       
-      console.log("You are now logged in");
-      console.log("Welcome back", user.name);
     }catch(error)  {
       console.error(err);
-      res.status(500).send({ 
+      return res.status(500).send({ 
         message: 'Something went wrong',
         error:  error instanceof Error ? error.message : error});
     }};
@@ -93,14 +93,14 @@ const changeRole = async (req, res) => {
       'UPDATE users SET role = $1 WHERE email = $2 RETURNING *', ['CREATOR', email]
     );
 
-    res.status(200).json({
+    console.log("User role updated to CREATOR")
+    return res.status(200).json({
       message: 'User role updated to CREATOR',
       user: updated.rows[0]
     });
-    console.log("User role updated to CREATOR")
   } catch (error) {
     console.error('Role update failed:', error);
-    res.status(500).json({ message: 'Something went wrong', error: error.message });
+    return res.status(500).json({ message: 'Something went wrong', error: error.message });
   }
 };
 

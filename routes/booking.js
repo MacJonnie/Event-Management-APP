@@ -1,5 +1,5 @@
 import express from "express";
-import { bookEvent, cancelBooking } from "../controllers/booking.js";
+import { bookEvent, cancelBooking, confirmPayment, startPayment } from "../controllers/booking.js";
 import verifyToken from "../middleware/jwt_auth.js";
 
 const bookingRouter = express.Router()
@@ -39,9 +39,7 @@ const bookingRouter = express.Router()
  *         description: Server error during booking
  */
 // book event
-bookingRouter.post('/bookEvent', verifyToken, bookEvent, function (req, res) {
-
-});
+bookingRouter.post('/bookEvent', verifyToken, bookEvent);
 
 
 /**
@@ -73,8 +71,70 @@ bookingRouter.post('/bookEvent', verifyToken, bookEvent, function (req, res) {
  *         description: Server error
  */
 // cancel booking
-bookingRouter.put('/cancelBooking', verifyToken, cancelBooking, function (req, res) {
+bookingRouter.put('/cancelBooking', verifyToken, cancelBooking)
 
-});
+/**
+ * @swagger
+ * /bookings/startPayment:
+ *  post:
+ *    summary: Start payment process for a booking
+ *   tags: [Bookings]
+ *   security:
+ *    - bearerAuth: []
+ *  requestBody:
+ *   required: true
+ *  content:
+ *   application/json:
+ *    schema:
+ *    type: object
+ *   required:
+ *   - bookingId
+ *  properties:
+ *  bookingId:
+ *  type: string
+ * example: 666a12de019bc8123a54dc9e
+ * responses:
+ *  200:
+ *   description: Payment initialized, return authorization URL
+ *  400:
+ *  description: Bad request (e.g., booking not found, already paid, event price not set)
+ *  500:
+ * description: Server error during payment initialization
+ */
+// Start a payment for a booking
+bookingRouter.post('/startPayment', verifyToken, startPayment)
+
+
+/** 
+ * @swagger
+ * /bookings/confirmPayment:
+ *  put:
+ *    summary: Confirm payment for a booking
+ *  tags: [Bookings]
+ *  security:
+ *   - bearerAuth: []
+ * requestBody:
+ * required: true
+ * content:
+ * application/json:
+ * schema:
+ * type: object
+ * required:
+ * - bookingId
+ * properties:
+ * bookingId:
+ * type: string
+ * example: 666a12de019bc8123a54dc9e
+ * responses:
+ * 200:
+ * description: Payment confirmed and booking updated
+ * 400:
+ * description: Bad request (e.g., booking not found, payment verification failed)
+ * 500:
+ * description: Server error during payment confirmation
+*/
+// Confirm payment for a booking
+bookingRouter.put('/confirmPayment', verifyToken, confirmPayment)
+
 
 export default bookingRouter;

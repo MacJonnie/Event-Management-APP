@@ -20,7 +20,7 @@ const isCreator = async function (req, res, next) {
         next();
     } catch (error) {
         console.error('An error occured.', error)
-        res.status(500).json({message: "Error accessing secured route.",error: error.message})
+        return res.status(500).json({message: "Error accessing secured route.",error: error.message})
     };
 }
 

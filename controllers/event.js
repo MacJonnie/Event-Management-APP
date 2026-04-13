@@ -23,13 +23,13 @@ const createEvent = async (req, res) => {
       [title, description, date, location, total_seats, req.user.id]
     );
 
-    res.status(201).json({
+    return res.status(201).json({
       message: 'Event created successfully',
       event: result.rows[0]
     });
   } catch (error) {
     console.error('Create event error:', error);
-    res.status(500).json({ message: 'Could not create event', error: error.message });
+    return res.status(500).json({ message: 'Could not create event', error: error.message });
   }
 };
 
@@ -42,10 +42,10 @@ const getAllEvents = async (req, res) => {
        JOIN users ON events.created_by = users.id`
     );
 
-    res.status(200).json(result.rows);
+    return res.status(200).json(result.rows);
   } catch (error) {
     console.error('Fetch events failed:', error);
-    res.status(500).json({ message: 'Could not fetch events', error: error.message });
+    return res.status(500).json({ message: 'Could not fetch events', error: error.message });
   }
 };
 
@@ -62,9 +62,9 @@ const getEventById = async (req, res) => {
       return res.status(404).json({ message: 'Event not found' });
     }
 
-    res.status(200).json(result.rows[0]);
+    return res.status(200).json(result.rows[0]);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching event', error: error.message });
+    return res.status(500).json({ message: 'Error fetching event', error: error.message });
   }
 };
 
@@ -97,10 +97,10 @@ const updateEvent = async (req, res) => {
 
     await pool.query('COMMIT');
 
-    res.status(200).json({ message: 'Event updated', event: result.rows[0] });
+    return res.status(200).json({ message: 'Event updated', event: result.rows[0] });
   } catch (error) {
     await pool.query('ROLLBACK');
-    res.status(500).json({ message: 'Update failed', error: error.message });
+    return res.status(500).json({ message: 'Update failed', error: error.message });
   }
 };
 
@@ -117,9 +117,9 @@ const deleteEvent = async (req, res) => {
     }
 
     await pool.query(`DELETE FROM events WHERE id = $1`, [id]);
-    res.status(200).json({ message: 'Event deleted successfully' });
+    return res.status(200).json({ message: 'Event deleted successfully' });
   } catch (error) {
-    res.status(500).json({ message: 'Deletion failed', error: error.message });
+    return res.status(500).json({ message: 'Deletion failed', error: error.message });
   }
 };
 
