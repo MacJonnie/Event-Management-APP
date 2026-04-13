@@ -19,8 +19,8 @@ const bookingRouter = express.Router()
  *           schema:
  *             type: object
  *             required:
- *               - eventId
- *               - seatsBooked
+ *               - event_id
+ *               - seats_booked
  *             properties:
  *               eventId:
  *                 type: string
@@ -76,65 +76,60 @@ bookingRouter.put('/cancelBooking', verifyToken, cancelBooking)
 /**
  * @swagger
  * /bookings/startPayment:
- *  post:
- *    summary: Start payment process for a booking
- *   tags: [Bookings]
- *   security:
- *    - bearerAuth: []
- *  requestBody:
- *   required: true
- *  content:
- *   application/json:
- *    schema:
- *    type: object
- *   required:
- *   - bookingId
- *  properties:
- *  bookingId:
- *  type: string
- * example: 666a12de019bc8123a54dc9e
- * responses:
- *  200:
- *   description: Payment initialized, return authorization URL
- *  400:
- *  description: Bad request (e.g., booking not found, already paid, event price not set)
- *  500:
- * description: Server error during payment initialization
+ *   post:
+ *     summary: Start payment process for a booking
+ *     tags: [Bookings]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - bookingId
+ *             properties:
+ *               bookingId:
+ *                 type: string
+ *                 example: 1
+ *     responses:
+ *       200:
+ *         description: Payment initialized, return authorization URL
+ *       400:
+ *         description: Bad request
+ *       500:
+ *         description: Server error
  */
 // Start a payment for a booking
 bookingRouter.post('/startPayment', verifyToken, startPayment)
 
 
-/** 
+/**
  * @swagger
- * /bookings/confirmPayment:
- *  put:
- *    summary: Confirm payment for a booking
- *  tags: [Bookings]
- *  security:
- *   - bearerAuth: []
- * requestBody:
- * required: true
- * content:
- * application/json:
- * schema:
- * type: object
- * required:
- * - bookingId
- * properties:
- * bookingId:
- * type: string
- * example: 666a12de019bc8123a54dc9e
- * responses:
- * 200:
- * description: Payment confirmed and booking updated
- * 400:
- * description: Bad request (e.g., booking not found, payment verification failed)
- * 500:
- * description: Server error during payment confirmation
-*/
+ * /bookings/confirmPayment/{reference}:
+ *   put:
+ *     summary: Confirm payment for a booking
+ *     tags: [Bookings]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: reference
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Paystack payment reference
+ *     responses:
+ *       200:
+ *         description: Payment confirmed and booking updated
+ *       400:
+ *         description: Payment verification failed
+ *       500:
+ *         description: Server error
+ */
 // Confirm payment for a booking
-bookingRouter.put('/confirmPayment', verifyToken, confirmPayment)
+bookingRouter.put('/confirmPayment/:reference', verifyToken, confirmPayment);
 
 
 export default bookingRouter;
