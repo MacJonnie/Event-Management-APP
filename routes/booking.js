@@ -44,37 +44,6 @@ bookingRouter.post('/bookEvent', verifyToken, bookEvent);
 
 /**
  * @swagger
- * /bookings/cancelBooking:
- *   put:
- *     summary: Cancel an existing booking
- *     tags: [Bookings]
- *     security:
- *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required:
- *               - bookingId
- *             properties:
- *               bookingId:
- *                 type: string
- *                 example: 666a12de019bc8123a54dc9e
- *     responses:
- *       200:
- *         description: Booking cancelled
- *       404:
- *         description: Booking not found
- *       500:
- *         description: Server error
- */
-// cancel booking
-bookingRouter.put('/cancelBooking', verifyToken, cancelBooking)
-
-/**
- * @swagger
  * /bookings/startPayment:
  *   post:
  *     summary: Start payment process for a booking
@@ -130,6 +99,38 @@ bookingRouter.post('/startPayment', verifyToken, startPayment)
  */
 // Confirm payment for a booking
 bookingRouter.put('/confirmPayment/:reference', verifyToken, confirmPayment);
+
+
+/**
+ * @swagger
+ * /bookings/cancelBooking:
+ *   put:
+ *     summary: Cancel an existing booking
+ *     tags: [Bookings]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - bookingId
+ *             properties:
+ *               bookingId:
+ *                 type: string
+ *                 example: 666a12de019bc8123a54dc9e
+ *     responses:
+ *       200:
+ *         description: Booking cancelled
+ *       404:
+ *         description: Booking not found
+ *       500:
+ *         description: Server error
+ */
+// cancel booking
+bookingRouter.put('/cancelBooking', verifyToken, cancelBooking)
 
 
 export default bookingRouter;
